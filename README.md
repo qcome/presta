@@ -28,4 +28,4 @@ pwd: admin
 # TODO
  
  > To get the latest internationalization data upgrade the ICU system package and the intl PHP extension.
- 
+ > Docker Compose
