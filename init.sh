@@ -1,5 +1,4 @@
 #!/bin/bash
-
 apt-get -y update
 apt-get -y install nginx
 export HOSTNAME=$(curl -s http://169.254.169.254/metadata/v1/hostname)
