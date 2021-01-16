@@ -7,7 +7,7 @@ Test automatisation install prestashop
  1. Récupérer le fichier **init.sh** et l'exécuter :
  
 ```console
-$ curl -o docker-compose.yml https://raw.githubusercontent.com/qcome/presta/master/init.sh
+$ curl -o init.sh https://raw.githubusercontent.com/qcome/presta/master/init.sh
 $ ./init.sh
 ```
 
