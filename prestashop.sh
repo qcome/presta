@@ -11,15 +11,15 @@ else
     export APP_NAME=$app_name
 
     if [ ! -d sites/$app_name ]; then
-        echo https://github.com/PrestaShop/PrestaShop/releases/download/$ps_version/prestashop_$ps_version.zip
+
         if [ ! -f archives/prestashop_$ps_version.zip ]; then
-            curl -fsSL https://github.com/PrestaShop/PrestaShop/releases/download/$ps_version/prestashop_$ps_version.zip -o archives/prestashop/prestashop_$ps_version.zip
+            mkdir -p archives
+            curl -fsSL https://github.com/PrestaShop/PrestaShop/releases/download/$ps_version/prestashop_$ps_version.zip -o archives/prestashop_$ps_version.zip
         fi
 
-        unzip -d $app_folder archives/prestashop_$ps_version.zip
-        rm $app_folder/prestashop.zip
+        unzip -n -q archives/prestashop_$ps_version.zip -d $app_folder
 
-        unzip -n -q $app_folder/prestashop.zip -d $app_folder/prestashop
+        unzip -n -q $app_folder/prestashop.zip
         rm -rf $app_folder/prestashop.zip
     
         #chown www-data:www-data -R $folder/prestashop/
