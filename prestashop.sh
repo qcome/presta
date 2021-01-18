@@ -14,17 +14,14 @@ else
             curl -fsSL https://github.com/PrestaShop/PrestaShop/releases/download/$ps_version/prestashop_$ps_version.zip -o archives/prestashop/prestashop_$ps_version.zip
         fi
         unzip -d $folder archives/prestashop_$ps_version.zip
-    
-        # dwl version contains zip file with tree structure (1.7)
-        if [ ! -d $folder/prestashop ]; then
-            unzip -n -q $folder/prestashop.zip -d $folder/prestashop
-            rm -rf $folder/prestashop.zip
-        fi
+        rm $folder/prestashop.zip
 
-        chown www-data:www-data -R $folder/prestashop/
-        cp -n -R -p $folder/prestashop/* /var/www/html
+        unzip -n -q $folder/prestashop.zip -d $folder/prestashop
+        rm -rf $folder/prestashop.zip
     
-    
+        #chown www-data:www-data -R $folder/prestashop/
+        #cp -n -R -p $folder/prestashop/* /var/www/html
+
     fi
 
 
