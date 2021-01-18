@@ -10,6 +10,7 @@ else
 
     export APP_NAME=$app_name
 
+    # Si nouvelle app
     if [ ! -d sites/$app_name ]; then
 
         if [ ! -f archives/prestashop_$ps_version.zip ]; then
