@@ -1,5 +1,5 @@
 #!/bin/bash
-php index_cli.php 
+php ./install/index_cli.php 
     --domain=${PS_DOMAIN} 
     --db_server=${MYSQL_SERVER} 
     --db_name=${MYSQL_DATABASE} 

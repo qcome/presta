@@ -19,7 +19,8 @@ ARG APP_LOCATION
 #RUN echo ${APP_NAME}
 COPY --chown=www-data:www-data ${APP_LOCATION}/ /var/www/html/
 #RUN ls /var/www/html/
-
+COPY ./wait-for-it.sh /tmp/
+COPY ./run_install_prestashop.sh /tmp/
 
 RUN a2enmod rewrite
 # Define working directory.
