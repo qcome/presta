@@ -34,5 +34,7 @@ services:
       - 80:80
     depends_on: 
       - mysql
+    env_file:
+      - .env
     environment: 
       - _PS_MODE_DEV_=${PS_DEV_MODE}
