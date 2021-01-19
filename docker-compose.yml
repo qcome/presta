@@ -31,7 +31,7 @@ services:
         APP_LOCATION: ${APP_LOCATION}
     command: ["/tmp/wait-for-it.sh", "--timeout=60", "--strict", "mysql:3306", "--", "/tmp/run_install_prestashop.sh"]
     volumes : 
-      - ${APP_LOCATION}/:/var/www/html
+      - ${APP_LOCATION}/:/var/www/html:rw
     ports:
       - 8000:80
     depends_on: 

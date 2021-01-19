@@ -21,6 +21,7 @@ COPY --chown=www-data:www-data ${APP_LOCATION}/ /var/www/html/
 #RUN ls /var/www/html/
 COPY ./wait-for-it.sh /tmp/
 COPY ./run_install_prestashop.sh /tmp/
+
 RUN chmod +x /tmp/wait-for-it.sh
 RUN chmod +x /tmp/run_install_prestashop.sh
 
