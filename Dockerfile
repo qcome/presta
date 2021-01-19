@@ -18,21 +18,11 @@ COPY ./apache-config.conf /etc/apache2/sites-available/000-default.conf
 ARG APP_NAME
 #RUN echo ${APP_NAME}
 COPY --chown=www-data:www-data ./sites/${APP_NAME}/ /var/www/html/
-RUN ls /var/www/html/
+#RUN ls /var/www/html/
 
-RUN cd /var/www/html/install && php index_cli.php \
---domain=${PS_DOMAIN} \
---db_server=${MYSQL_SERVER} \
---db_name=${MYSQL_DATABASE} \
---db_user=${MYSQL_USER} \
---db_password=${MYSQL_PASSWORD} \
---email=${PS_ADMIN_EMAIL} \
---password=${PS_ADMIN_PASSWORD} \
---language=${PS_LANGUAGE} \
---country=${PS_COUNTRY}
+
 RUN a2enmod rewrite
 # Define working directory.
 WORKDIR /var/www/html
 # Define default command.
 EXPOSE 80
-CMD apachectl -D FOREGROUND
