@@ -16,7 +16,7 @@ RUN apt install -y php unzip
 RUN apt-get install -y php-cli php-common php-mbstring php-gd php-intl php-xml php-mysql php-zip php-curl php-xmlrpc
 COPY ./apache-config.conf /etc/apache2/sites-available/000-default.conf
 RUN echo $APP_NAME
-COPY --chown=www-data:www-data sites/$APP_NAME/ /var/www/html/
+COPY --chown=www-data:www-data ./sites/$APP_NAME/ /var/www/html/
 RUN ls /var/www/html/
 
 RUN cd /var/www/html/install && php index_cli.php \
