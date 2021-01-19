@@ -22,7 +22,7 @@ else
         unzip -n -q $app_folder/prestashop.zip -d $app_folder
         #rm -rf $app_folder/prestashop.zip
     
-        #chown www-data:www-data -R $app_folder/
+        chown www-data:www-data -R $app_folder/
         #cp -n -R -p $folder/prestashop/* /var/www/html
 
     fi
