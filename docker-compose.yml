@@ -32,4 +32,5 @@ services:
     depends_on: 
       - mysql
     environment: 
+      - APP_NAME=${APP_NAME}
       - _PS_MODE_DEV_=${PS_DEV_MODE}
