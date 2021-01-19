@@ -18,6 +18,7 @@ COPY ./apache-config.conf /etc/apache2/sites-available/000-default.conf
 ARG APP_LOCATION
 #RUN echo ${APP_NAME}
 COPY --chown=www-data:www-data ${APP_LOCATION}/ /var/www/html/
+COPY --chown=www-data:www-data ./phppsinfo.php /var/www/html/
 #RUN ls /var/www/html/
 COPY ./wait-for-it.sh /tmp/
 COPY ./run_install_prestashop.sh /tmp/

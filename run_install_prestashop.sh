@@ -10,5 +10,6 @@ php ./install/index_cli.php \
 --language=${PS_LANGUAGE} \
 --country=${PS_COUNTRY} \
 --db_create=${PS_DB_CREATE} \
+&& rm -R /var/www/html/install \
 && chown www-data:www-data -R /var/www/html \
 && apachectl -D FOREGROUND
