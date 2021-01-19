@@ -14,9 +14,9 @@ RUN apt-get upgrade
 RUN apt-get install -y apache2 libapache2-mod-php
 RUN apt install -y php unzip
 RUN apt-get install -y php-cli php-common php-mbstring php-gd php-intl php-xml php-mysql php-zip php-curl php-xmlrpc
-COPY ./sites/${APP_NAME} /var/www/html:rw
 COPY ./apache-config.conf /etc/apache2/sites-available/000-default.conf
-ENV _PS_MODE_DEV_=${PS_MODE_DEV}
+COPY ./sites/${APP_NAME} /var/www/html:rw
+RUN chown www-data:www-data -R .
 RUN php /var/www/html/install/index_cli.php \
 --domain=${PS_DOMAIN} \
 --db_server=${MYSQL_SERVER} \
