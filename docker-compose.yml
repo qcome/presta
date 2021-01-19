@@ -10,6 +10,8 @@ services:
     volumes:
       - ./sites/${APP_NAME}/.docker/data/mysql/:/var/lib/mysql
       - ./sites/${APP_NAME}/.docker/logs/mysql/:/var/log/mysql
+    networks:
+      - default
   
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -51,3 +53,5 @@ services:
       - .env
     environment: 
       - _PS_MODE_DEV_=${PS_DEV_MODE}
+    networks:
+      - default
