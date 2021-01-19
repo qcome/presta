@@ -17,7 +17,8 @@ RUN apt-get install -y php-cli php-common php-mbstring php-gd php-intl php-xml p
 COPY ./apache-config.conf /etc/apache2/sites-available/000-default.conf
 ARG APP_LOCATION
 #RUN echo ${APP_NAME}
-COPY --chown=www-data:www-data ${APP_LOCATION}/ /var/www/html/
+COPY ${APP_LOCATION}/ /var/www/html/
+RUN chown -R www-data:www-data ${APP_LOCATION}
 #RUN ls /var/www/html/
 COPY ./wait-for-it.sh /tmp/
 COPY ./run_install_prestashop.sh /tmp/
