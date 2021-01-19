@@ -44,7 +44,6 @@ services:
       && apachectl -D FOREGROUND"
     volumes : 
       - ${APP_LOCATION}/:/var/www/html
-    restart: always
     ports:
       - 8000:80
     depends_on: 
