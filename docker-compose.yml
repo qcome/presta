@@ -23,7 +23,9 @@ services:
 
   app_dev:
     container_name: presta_app
-    build: .
+    build:
+      args:
+        APP_NAME: $APP_NAME
     volumes : 
       - ./sites/${APP_NAME}/:/var/www/html
     restart: always
