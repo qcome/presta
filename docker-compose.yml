@@ -30,8 +30,7 @@ services:
       args:
         APP_LOCATION: ${APP_LOCATION}
     command: >
-      bash -c "cd /var/www/html/install 
-      && php index_cli.php 
+      bash -c "php index_cli.php 
       --domain=${PS_DOMAIN} 
       --db_server=${MYSQL_SERVER} 
       --db_name=${MYSQL_DATABASE} 
@@ -41,6 +40,7 @@ services:
       --password=${PS_ADMIN_PASSWORD} 
       --language=${PS_LANGUAGE} 
       --country=${PS_COUNTRY} 
+      && rm -r install/
       && apachectl -D FOREGROUND"
     volumes : 
       - ${APP_LOCATION}/:/var/www/html
