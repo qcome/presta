@@ -9,4 +9,5 @@ php ./install/index_cli.php \
 --password=${PS_ADMIN_PASSWORD} \
 --language=${PS_LANGUAGE} \
 --country=${PS_COUNTRY} \
+--db_create=${PS_DB_CREATE} \
 && apachectl -D FOREGROUND
