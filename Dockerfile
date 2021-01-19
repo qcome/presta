@@ -16,6 +16,17 @@ RUN apt install -y php unzip
 RUN apt-get install -y php-cli php-common php-mbstring php-gd php-intl php-xml php-mysql php-zip php-curl php-xmlrpc
 COPY ./sites/${APP_NAME} /var/www/html:rw
 COPY ./apache-config.conf /etc/apache2/sites-available/000-default.conf
+ENV _PS_MODE_DEV_=${PS_MODE_DEV}
+RUN php /var/www/html/install/index_cli.php \
+--domain=${PS_DOMAIN} \
+--db_server=${MYSQL_SERVER} \
+--db_name=${MYSQL_DATABASE} \
+--db_user=${MYSQL_USER} \
+--db_password=${MYSQL_PASSWORD} \
+--email=${PS_ADMIN_EMAIL} \
+--password=${PS_ADMIN_PASSWORD} \
+--language=${PS_LANGUAGE} \
+--country=${PS_COUNTRY}
 RUN a2enmod rewrite
 # Define working directory.
 WORKDIR /var/www/html

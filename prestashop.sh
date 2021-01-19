@@ -28,12 +28,6 @@ else
         #cp -n -R -p $folder/prestashop/* /var/www/html
 
     fi
-
-
-    
-
-
-    #cp -R template/. sites/$1/
-    #docker-compose down
-    #docker-compose up --build
+    docker-compose -f down
+    docker-compose up --build
 fi
