@@ -11,5 +11,6 @@ php ./install/index_cli.php \
 --country=${PS_COUNTRY} \
 --db_create=${PS_DB_CREATE} \
 && rm -R /var/www/html/install \
+&& mv /tmp/phppsinfo.php /var/www/html \
 && chown www-data:www-data -R /var/www/html \
 && apachectl -D FOREGROUND
