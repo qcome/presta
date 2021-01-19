@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+
+  mysql:
+    image: mysql/mysql-server:5.7
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./sites/${APP_NAME}/.docker/data/mysql/:/var/lib/mysql
+      - ./sites/${APP_NAME}/.docker/logs/mysql/:/var/log/mysql
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      -  8080:80
+    env_file:
+      - .env
+    environment:
+      PMA_HOST: mysql
+    container_name: presta_phpmyadmin
+
+  app_dev:
+    container_name: presta_app
+    build: .
+    volumes : 
+      - ./sites/${APP_NAME}/:/var/www/html
+    restart: always
+    ports:
+      - 80:80
+    depends_on: 
+      - mysql
