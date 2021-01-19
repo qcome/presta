@@ -8,8 +8,8 @@ services:
     env_file:
       - .env
     volumes:
-      - ./sites/${APP_NAME}/.docker/data/mysql/:/var/lib/mysql
-      - ./sites/${APP_NAME}/.docker/logs/mysql/:/var/log/mysql
+      - ${APP_LOCATION}/.docker/data/mysql/:/var/lib/mysql
+      - ${APP_LOCATION}/.docker/logs/mysql/:/var/log/mysql
     networks:
       - default
   
@@ -28,7 +28,7 @@ services:
     build:
       context: .
       args:
-        APP_NAME: ${APP_NAME}
+        APP_LOCATION: ${APP_LOCATION}
     command: >
       bash -c "cd /var/www/html/install 
       && php index_cli.php 
@@ -43,7 +43,7 @@ services:
       --country=${PS_COUNTRY} 
       && apachectl -D FOREGROUND"
     volumes : 
-      - ./sites/${APP_NAME}/:/var/www/html
+      - ${APP_LOCATION}/:/var/www/html
     restart: always
     ports:
       - 8000:80

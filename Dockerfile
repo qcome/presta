@@ -15,9 +15,9 @@ RUN apt-get install -y apache2 libapache2-mod-php
 RUN apt install -y php unzip
 RUN apt-get install -y php-cli php-common php-mbstring php-gd php-intl php-xml php-mysql php-zip php-curl php-xmlrpc
 COPY ./apache-config.conf /etc/apache2/sites-available/000-default.conf
-ARG APP_NAME
+ARG APP_LOCATION
 #RUN echo ${APP_NAME}
-COPY --chown=www-data:www-data ./sites/${APP_NAME}/ /var/www/html/
+COPY --chown=www-data:www-data ${APP_LOCATION}/ /var/www/html/
 #RUN ls /var/www/html/
 
 
@@ -26,3 +26,4 @@ RUN a2enmod rewrite
 WORKDIR /var/www/html
 # Define default command.
 EXPOSE 80
+CMD ["apachectl", "-D", "FOREGROUND"]

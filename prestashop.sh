@@ -27,5 +27,5 @@ else
 
     fi
     docker-compose down
-    APP_NAME=$app_name docker-compose up --build
+    APP_LOCATION=./sites/$app_name docker-compose up --build
 fi
