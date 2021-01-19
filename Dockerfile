@@ -16,10 +16,8 @@ RUN apt install -y php unzip
 RUN apt-get install -y php-cli php-common php-mbstring php-gd php-intl php-xml php-mysql php-zip php-curl php-xmlrpc
 COPY ./apache-config.conf /etc/apache2/sites-available/000-default.conf
 COPY ./sites/${APP_NAME} /var/www/html:rw
-RUN cd /var/www/html
-RUN chown www-data:www-data -R .
-RUN cd ./install
-RUN php index_cli.php \
+RUN chown www-data:www-data -R /var/www/html
+RUN cd /var/www/html/install && php index_cli.php \
 --domain=${PS_DOMAIN} \
 --db_server=${MYSQL_SERVER} \
 --db_name=${MYSQL_DATABASE} \
