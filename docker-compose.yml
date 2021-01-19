@@ -32,4 +32,4 @@ services:
     depends_on: 
       - mysql
     environment: 
-      - _PS_MODE_DEV_=${PS_MODE_DEV}
+      - _PS_MODE_DEV_=${PS_DEV_MODE}
