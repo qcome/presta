@@ -30,7 +30,7 @@ services:
       args:
         APP_LOCATION: ${APP_LOCATION}
     command: >
-      bash -c "php index_cli.php 
+      bash -c "php ./install/index_cli.php 
       --domain=${PS_DOMAIN} 
       --db_server=${MYSQL_SERVER} 
       --db_name=${MYSQL_DATABASE} 
