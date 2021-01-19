@@ -8,8 +8,6 @@ else
     ps_version=1.7.7.1
     #apt install -y php unzip
 
-    export APP_NAME=$app_name
-
     # Si nouvelle app
     if [ ! -d sites/$app_name ]; then
 
@@ -29,5 +27,5 @@ else
 
     fi
     docker-compose down
-    docker-compose up --build
+    APP_NAME=$app_name docker-compose up --build
 fi
