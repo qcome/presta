@@ -24,6 +24,7 @@ services:
   app_dev:
     container_name: presta_app
     build:
+      context: .
       args:
         APP_NAME: $APP_NAME
     volumes : 
