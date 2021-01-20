@@ -1,1 +1,6 @@
-mysql -e "GRANT ALL PRIVILEGES ON '{$MYSQL_DATABASE}' TO '${MYSQL_USER}'"
+
+mysql <<EOF
+GRANT ALL PRIVILEGES ON 'prestashop' TO 'mysqld'
+GRANT ALL PRIVILEGES ON 'prestashop' TO 'username'
+FlUSH PRIVILEGES;
+EOF
