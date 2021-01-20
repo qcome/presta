@@ -17,7 +17,7 @@ RUN apt-get update \
     && docker-php-ext-install iconv intl pdo_mysql mbstring soap gd zip
 
 RUN docker-php-source extract \
-  && if [ -d "/usr/src/php/ext/mysql" ]; then docker-php-ext-install mysql; fi \
+  && if [ -d "/usr/src/php/ext/mysql" ]; then docker-php-ext-install mysqlnd; fi \
   && if [ -d "/usr/src/php/ext/mcrypt" ]; then docker-php-ext-install mcrypt; fi \
 	&& if [ -d "/usr/src/php/ext/opcache" ]; then docker-php-ext-install opcache; fi \
 	&& docker-php-source delete
