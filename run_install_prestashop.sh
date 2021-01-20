@@ -1,5 +1,5 @@
 #!/bin/bash
-php ./install/index_cli.php \
+runuser -g www-data -u www-data -- php -d memory_limit=-1 /var/www/html/install/index_cli.php \
 --domain=${PS_DOMAIN} \
 --db_server=${MYSQL_SERVER} \
 --db_name=${MYSQL_DATABASE} \

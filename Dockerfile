@@ -1,19 +1,28 @@
-FROM ubuntu:18.04
-# Install.
-RUN \
-sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
-apt-get update && \
-apt-get -y upgrade && \
-apt-get install -y build-essential && \
-apt-get install -y software-properties-common && \
-apt-get install -y byobu curl git htop man unzip vim wget && \
-rm -rf /var/lib/apt/lists/*
-ARG DEBIAN_FRONTEND=noninteractive
-RUN apt-get update
-RUN apt-get upgrade
-RUN apt-get install -y apache2 libapache2-mod-php
-RUN apt install -y php unzip
-RUN apt-get install -y php-cli php-common php-mbstring php-gd php-intl php-xml php-mysql php-zip php-curl php-xmlrpc
+FROM php:7.3-apache
+
+RUN apt-get update \
+	&& apt-get install -y libmcrypt-dev \
+		libjpeg62-turbo-dev \
+		libpcre3-dev \
+		libpng-dev \
+		libfreetype6-dev \
+		libxml2-dev \
+		libicu-dev \
+		libzip-dev \
+		default-mysql-client \
+		wget \
+		unzip \
+    && rm -rf /var/lib/apt/lists/* \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install iconv intl pdo_mysql mbstring soap gd zip
+
+RUN docker-php-source extract \
+  && if [ -d "/usr/src/php/ext/mysql" ]; then docker-php-ext-install mysql; fi \
+  && if [ -d "/usr/src/php/ext/mcrypt" ]; then docker-php-ext-install mcrypt; fi \
+	&& if [ -d "/usr/src/php/ext/opcache" ]; then docker-php-ext-install opcache; fi \
+	&& docker-php-source delete
+
+
 COPY ./apache-config.conf /etc/apache2/sites-available/000-default.conf
 ARG APP_LOCATION
 #RUN echo ${APP_NAME}
