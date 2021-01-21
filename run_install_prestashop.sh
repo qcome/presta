@@ -1,5 +1,6 @@
 #!/bin/bash
-runuser -g www-data -u www-data -- php -d memory_limit=-1 /var/www/html/install/index_cli.php \
+mv /var/www/html/install /var/www/html/installed \
+&& runuser -g www-data -u www-data -- php -d memory_limit=-1 /var/www/html/installed/index_cli.php \
 --domain=${PS_DOMAIN} \
 --db_server=${MYSQL_SERVER} \
 --db_name=${MYSQL_DATABASE} \
@@ -10,7 +11,8 @@ runuser -g www-data -u www-data -- php -d memory_limit=-1 /var/www/html/install/
 --language=${PS_LANGUAGE} \
 --country=${PS_COUNTRY} \
 --db_create=${PS_DB_CREATE} \
-&& rm -R /var/www/html/install \
+&& rm -r /var/www/html/installed \
+&& rm /var/www/html/install.lock \
 && mv /tmp/phppsinfo.php /var/www/html \
 && chown www-data:www-data -R /var/www/html \
 && apachectl -D FOREGROUND
