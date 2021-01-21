@@ -8,12 +8,12 @@ services:
     env_file:
       - .env
     volumes:
-      - ${APP_LOCATION}/.docker/data/mysql/:/var/lib/mysql
-      - ${APP_LOCATION}/.docker/logs/mysql/:/var/log/mysql
+      - ${APP_LOCATION}/.docker/data/mysql/:/var/lib/mysql:rw
+      - ${APP_LOCATION}/.docker/logs/mysql/:/var/log/mysql:rw
       - ./init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
     networks:
       - default
-  
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
@@ -31,7 +31,7 @@ services:
       args:
         APP_LOCATION: ${APP_LOCATION}
     command: ["/tmp/wait-for-it.sh", "--timeout=60", "--strict", "mysql:3306", "--", "/tmp/run_install_prestashop.sh"]
-    volumes : 
+    volumes:
       - ${APP_LOCATION}/:/var/www/html:rw
     ports:
       - 8000:80
