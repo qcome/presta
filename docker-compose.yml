@@ -41,5 +41,6 @@ services:
       - .env
     environment: 
       - _PS_MODE_DEV_=${PS_DEV_MODE}
+      - _PS_ADMIN_DIR_=admin01
     networks:
       - default
