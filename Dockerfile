@@ -29,7 +29,7 @@ ARG APP_LOCATION
 COPY ./phppsinfo.php /var/www/html/
 COPY --chown=www-data:www-data ${APP_LOCATION}/ /var/www/html/
 
-RUN ls /var/www/html/
+RUN ls -lrt /var/www/html/
 
 COPY ./wait-for-it.sh /tmp/
 COPY ./run_install_prestashop.sh /tmp/
