@@ -18,6 +18,8 @@ else
 
         mkdir -p archives $app_folder
         unzip -n -q archives/prestashop_$ps_version.zip -d $app_folder
+        rm -rf $app_folder/index.php
+        rm -rf $app_folder/Install_PrestaShop.html
 
         unzip -n -q $app_folder/prestashop.zip -d $app_folder
         rm -rf $app_folder/prestashop.zip
