@@ -34,7 +34,7 @@ services:
     volumes:
       - ${APP_LOCATION}/:/var/www/html:rw
     ports:
-      - 8080:80
+      - 8000:80
     depends_on: 
       - mysql
     env_file:
