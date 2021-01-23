@@ -13,6 +13,7 @@ mv /var/www/html/install /var/www/html/installed \
 --db_create=${PS_DB_CREATE} \
 && rm -r /var/www/html/installed \
 && ls -l /var/www/html \
+&& mv /var/www/html/admin /var/www/html/${PS_FOLDER_ADMIN} \
 && mv /tmp/phppsinfo.php /var/www/html \
 && chown www-data:www-data -R /var/www/html \
 && apachectl -D FOREGROUND
