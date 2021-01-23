@@ -10,7 +10,7 @@ services:
     volumes:
       - ${APP_LOCATION}/.docker/data/mysql/:/var/lib/mysql:rw
       - ${APP_LOCATION}/.docker/logs/mysql/:/var/log/mysql:rw
-     # - ./init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
+      - ./init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
     networks:
       - default
 
