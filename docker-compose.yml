@@ -34,12 +34,10 @@ services:
     volumes:
       - ${APP_LOCATION}/:/var/www/html:rw
     ports:
-      - 8000:80
+      - 80:80
     depends_on: 
       - mysql
     env_file:
       - .env
-    environment: 
-      - _PS_ADMIN_DIR_=admin01
     networks:
       - default
