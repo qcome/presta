@@ -7,9 +7,9 @@ services:
     restart: always
     env_file:
       - .env
-    #volumes:
-     # - ${APP_LOCATION}/.docker/data/mysql/:/var/lib/mysql:rw
-     # - ${APP_LOCATION}/.docker/logs/mysql/:/var/log/mysql:rw
+    volumes:
+      - ${APP_LOCATION}/.docker/data/mysql/:/var/lib/mysql:rw
+      - ${APP_LOCATION}/.docker/logs/mysql/:/var/log/mysql:rw
      # - ./init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
     networks:
       - default
@@ -34,7 +34,7 @@ services:
     volumes:
       - ${APP_LOCATION}/:/var/www/html:rw
     ports:
-      - 80:80
+      - 8080:80
     depends_on: 
       - mysql
     env_file:
