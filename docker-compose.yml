@@ -7,9 +7,9 @@ services:
     restart: always
     env_file:
       - .env
-    volumes:
-      - ${APP_LOCATION}/.docker/data/mysql/:/var/lib/mysql:rw
-      - ${APP_LOCATION}/.docker/logs/mysql/:/var/log/mysql:rw
+    # volumes:
+    #   - ${APP_LOCATION}/.docker/data/mysql/:/var/lib/mysql:rw
+    #   - ${APP_LOCATION}/.docker/logs/mysql/:/var/log/mysql:rw
     ports:
       - 3306:3306
 
