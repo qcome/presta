@@ -7,7 +7,7 @@ services:
     restart: always
     env_file:
       - .env
-    volumes:
+    # volumes:
       #- ${APP_LOCATION}/.docker/data/mysql/:/var/lib/mysql:rw
       #- ${APP_LOCATION}/.docker/logs/mysql/:/var/log/mysql:rw
     networks:
