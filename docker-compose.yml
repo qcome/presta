@@ -8,8 +8,8 @@ services:
     env_file:
       - .env
     volumes:
-      - db-data/mysql/:/var/lib/mysql:rw
-      - db-logs/mysql/:/var/log/mysql:rw
+      - ${APP_LOCATION}/.docker/data/mysql/:/var/lib/mysql:rw
+      - ${APP_LOCATION}/.docker/logs/mysql/:/var/log/mysql:rw
     networks:
       - default
 
@@ -40,9 +40,3 @@ services:
   #     - .env
   #   networks:
   #     - default
-
-  volumes: 
-    db-data:
-      - ${APP_LOCATION}/.docker/data/
-    db-logs:
-      - ${APP_LOCATION}/.docker/logs/
