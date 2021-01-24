@@ -3,14 +3,13 @@ version: '3'
 services:
 
   mysql:
-    image: mysql:5
+    build: database/mysql/.
     restart: always
     env_file:
       - .env
     volumes:
-      - ${APP_LOCATION}/.docker/data/mysql/:/var/lib/mysql:rw
-      - ${APP_LOCATION}/.docker/logs/mysql/:/var/log/mysql:rw
-      - ./init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
+      - ${APP_LOCATION}/.docker/data/mysql/:/var/lib/mysql
+      - ${APP_LOCATION}/.docker/logs/mysql/:/var/log/mysql
     networks:
       - default
 
