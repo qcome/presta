@@ -17,7 +17,7 @@ else
         fi
 
         mkdir -p archives $app_folder
-        # mkdir -p $app_folder/.docker/data/mysql
+        mkdir dock
         # mkdir -p $app_folder/.docker/logs/mysql
         ls -l
         echo $app_folder

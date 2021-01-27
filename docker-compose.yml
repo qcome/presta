@@ -9,7 +9,7 @@ services:
       - .env
     volumes:
       - ${APP_LOCATION}/.docker/data/mysql/:/var/lib/mysql:rw
-      - ${APP_LOCATION}/.docker/logs/mysql/:/var/log/mysql:rw
+      - ./dock/.docker/logs/mysql/:/var/log/mysql:rw
     ports:
       - 3306:3306
     #container_name: ${APP_NAME}_mysql
