@@ -1,5 +1,6 @@
 FROM mysql:5
 RUN whoami
+RUN ls -l /var/lib/mysql
 #ADD scripts/init-db.sh /docker-entrypoint-initdb.d/
 
 #RUN chown -R mysql:mysql /docker-entrypoint-initdb.d/
