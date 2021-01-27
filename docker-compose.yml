@@ -3,7 +3,7 @@ version: '3'
 services:
 
   mysql:
-    build: .docker/mysql/.
+    image: mysql:5
     restart: always
     env_file:
       - .env
@@ -12,32 +12,33 @@ services:
       - ${APP_LOCATION}/.docker/logs/mysql/:/var/log/mysql:rw
     ports:
       - 3306:3306
+    #container_name: ${APP_NAME}_mysql
 
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    ports:
-      -  8080:80
-    env_file:
-      - .env
-    environment:
-      PMA_HOST: mysql
-    container_name: presta_phpmyadmin
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   ports:
+  #     -  8080:80
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     PMA_HOST: mysql
+  #   container_name: presta_phpmyadmin
 
-  app_dev:
-    container_name: presta_app
-    build:
-      context: .
-      args:
-        APP_LOCATION: ${APP_LOCATION}
-    command: ["/tmp/wait-for-it.sh", "--timeout=60", "--strict", "mysql:3306", "--", "/tmp/run_install_prestashop.sh"]
-    volumes:
-      - ${APP_LOCATION}/:/var/www/html:rw
-    ports:
-      - 8000:80
-    depends_on: 
-      - mysql
-    env_file:
-      - .env
-    networks:
-      - default
+  # app_dev:
+  #   container_name: presta_app
+  #   build:
+  #     context: .
+  #     args:
+  #       APP_LOCATION: ${APP_LOCATION}
+  #   command: ["/tmp/wait-for-it.sh", "--timeout=60", "--strict", "mysql:3306", "--", "/tmp/run_install_prestashop.sh"]
+  #   volumes:
+  #     - ${APP_LOCATION}/:/var/www/html:rw
+  #   ports:
+  #     - 8000:80
+  #   depends_on: 
+  #     - mysql
+  #   env_file:
+  #     - .env
+  #   networks:
+  #     - default
