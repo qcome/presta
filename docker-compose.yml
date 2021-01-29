@@ -1,7 +1,6 @@
-version: '3'
+version: "3"
 
 services:
-
   mysql:
     image: mysql:5
     restart: always
@@ -12,14 +11,22 @@ services:
       - ./dock/logs/mysql/:/var/log/mysql:rw
     ports:
       - 3306:3306
-    command: ["mysqld", "--log_error=/var/log/mysql/mysql_error.log"]
+    command:
+      [
+        "mysqld",
+        # UTF-8
+        "--character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci",
+        # LOGS
+        "--log_error=/var/log/mysql/mysql_error.log",
+        "--general_log_file=/var/log/mysql/mysql.log --general_log=1",
+        "--log_slow_queries=/var/log/mysql/mysql-slow.log --long_query_time=2 --log-queries-not-using-indexes",
+      ]
     #container_name: ${APP_NAME}_mysql
-
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
-      -  8080:80
+      - 8080:80
     env_file:
       - .env
     environment:
@@ -37,7 +44,7 @@ services:
       - ${APP_LOCATION}/:/var/www/html:rw
     ports:
       - 8000:80
-    depends_on: 
+    depends_on:
       - mysql
     env_file:
       - .env
