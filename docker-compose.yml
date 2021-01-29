@@ -3,18 +3,19 @@ version: "3"
 services:
   mysql:
     image: mysql:5.7
-    restart: unless-stopped
+    restart: always #unless-stopped
     env_file:
       - .env
     volumes:
       #- ./db_data/db/backup.sql:/docker-entrypoint-initdb.d/backup.sql #it loads an already existing database
-      - ./dock/data/mysql/:/var/lib/mysql:rw
-      - ./dock/logs/mysql/:/var/log/mysql:rw
+      - ./dock/data/mysql/:/var/lib/mysql
+      - ./dock/logs/mysql/:/var/log/mysql
     ports:
       - 3306:3306
     entrypoint: "" # On écrase l'entrypoint de l'image mysql : ENTRYPOINT ["docker-entrypoint.sh"]
-    command: bash -c "chown -R mysql:mysql /var/log/mysql && exec /entrypoint.sh mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --log_error=/var/log/mysql/mysql_error.log --general_log_file=/var/log/mysql/mysql.log --general_log=1 --slow_query_log_file=/var/log/mysql/mysql-slow.log --slow_query_log=1 --log-queries-not-using-indexes"
+    command: bash -c "chown -R mysql:mysql /var/log/mysql && exec /entrypoint.sh mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --log_error=/var/log/mysql/mysql_error.log --general_log_file=/var/log/mysql/mysql.log --general_log=1 --slow_query_log_file=/var/log/mysql/mysql-slow.log --slow_query_log=1"
     #container_name: ${APP_NAME}_mysql
+    #--log-queries-not-using-indexes
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
