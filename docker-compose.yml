@@ -15,11 +15,11 @@ services:
       [
         "mysqld",
         # UTF-8
-        "--character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci",
+        "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci",
         # LOGS
         "--log_error=/var/log/mysql/mysql_error.log",
-        "--general_log_file=/var/log/mysql/mysql.log --general_log=1",
-        "--log_slow_queries=/var/log/mysql/mysql-slow.log --long_query_time=2 --log-queries-not-using-indexes",
+        "--general_log_file=/var/log/mysql/mysql.log", "--general_log=1",
+        "--log_slow_queries=/var/log/mysql/mysql-slow.log", "--long_query_time=2", "--log-queries-not-using-indexes",
       ]
     #container_name: ${APP_NAME}_mysql
 
