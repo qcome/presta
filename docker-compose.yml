@@ -2,11 +2,13 @@ version: "3"
 
 services:
   mysql:
-    image: mysql:5
+    image: mysql:5.7
     restart: always
     env_file:
       - .env
     volumes:
+      #- ./db_data/db/backup.sql:/docker-entrypoint-initdb.d/backup.sql #it loads an already existing database
+      - ./init-db.sh:/docker-entrypoint-initdb.d/init-db.sh:rw #it loads an already existing database
       - ./dock/data/mysql/:/var/lib/mysql:rw
       - ./dock/logs/mysql/:/var/log/mysql:rw
     ports:
