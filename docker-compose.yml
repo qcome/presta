@@ -12,6 +12,7 @@ services:
       - ./dock/logs/mysql/:/var/log/mysql:rw
     ports:
       - 3306:3306
+    command: ["mysqld", "--general-log=1"]
     #container_name: ${APP_NAME}_mysql
 
 
