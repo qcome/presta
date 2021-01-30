@@ -14,13 +14,13 @@ services:
     ports:
       - 3306:3306
     #entrypoint: "" # On écrase l'entrypoint de l'image mysql : ENTRYPOINT ["docker-entrypoint.sh"]
-    # command: >
-    #   bash -c "chown -R mysql:mysql /var/log/mysql 
-    #   && exec ./docker-entrypoint.sh mysqld 
-    #   --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci 
-    #   --log_error=/var/log/mysql/mysql_error.log 
-    #   --general_log_file=/var/log/mysql/mysql.log --general_log=1 
-    #   --slow_query_log_file=/var/log/mysql/mysql-slow.log --long_query_time=2 --slow_query_log=1"
+    command: >
+      bash -c "chown -R mysql:mysql /var/log/mysql 
+      && exec /usr/local/bin/docker-entrypoint.sh mysqld 
+      --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci 
+      --log_error=/var/log/mysql/mysql_error.log 
+      --general_log_file=/var/log/mysql/mysql.log --general_log=1 
+      --slow_query_log_file=/var/log/mysql/mysql-slow.log --long_query_time=2 --slow_query_log=1"
     #container_name: ${APP_NAME}_mysql
     #--log-queries-not-using-indexes
 
