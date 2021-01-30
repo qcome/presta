@@ -13,7 +13,7 @@ services:
       - ./dock/logs/mysql/:/var/log/mysql #rajouter nom app
     ports:
       - 3306:3306
-    entrypoint: "" # On écrase l'entrypoint de l'image mysql : ENTRYPOINT ["docker-entrypoint.sh"]
+    #entrypoint: "" # On écrase l'entrypoint de l'image mysql : ENTRYPOINT ["docker-entrypoint.sh"]
     # command: >
     #   bash -c "chown -R mysql:mysql /var/log/mysql 
     #   && exec ./docker-entrypoint.sh mysqld 
