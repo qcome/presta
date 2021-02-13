@@ -40,7 +40,7 @@ COPY ./phppsinfo.php /tmp/
 COPY ./php.ini /usr/local/etc/php/
 
 RUN chmod +x /tmp/wait-for-it.sh /tmp/docker_entrypoint.sh /tmp/run_install_prestashop.sh
-
+RUN ls -lrt /tmp/
 RUN a2enmod rewrite
 # Define working directory.
 WORKDIR /var/www/html
