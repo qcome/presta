@@ -1,0 +1,50 @@
+version: "3"
+
+services:
+  db:
+    image: mariadb:10.5.8
+    container_name: presta_${APP_NAME}_mysql
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      #- ./db_data/db/backup.sql:/docker-entrypoint-initdb.d/backup.sql #it loads an already existing database
+      - ./dock/data/mysql/:/var/lib/mysql #rajouter nom app
+      - ./dock/logs/mysql/:/var/log/mysql #rajouter nom app
+    ports:
+      - 3306:3306
+    entrypoint: "" # On écrase l'entrypoint de l'image mysql : ENTRYPOINT ["docker-entrypoint.sh"]
+    command: >
+      bash -c "chown -R mysql:mysql /var/log/mysql 
+      && exec /usr/local/bin/docker-entrypoint.sh mysqld 
+      --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci 
+      --log_error=/var/log/mysql/mysql_error.log 
+      --general_log_file=/var/log/mysql/mysql.log --general_log=1 
+      --slow_query_log_file=/var/log/mysql/mysql-slow.log --long_query_time=2 --slow_query_log=1"
+    #container_name: ${APP_NAME}_mysql
+    #--log-queries-not-using-indexes
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8080:80
+    env_file:
+      - .env
+    environment:
+      PMA_HOST: db
+    container_name: presta_phpmyadmin
+
+  app_dev:
+    image: prestashop/prestashop:1.7-fpm
+    container_name: presta_app
+    #command: ["/tmp/wait-for-it.sh", "--timeout=60", "--strict", "db:3306", "--", "/tmp/run_install_prestashop.sh"]
+    volumes:
+      - ${APP_LOCATION}/:/var/www/html
+    ports:
+      - 8000:80
+    depends_on:
+      - db
+    env_file:
+      - .env
+    networks:
+      - default
