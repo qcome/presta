@@ -47,4 +47,4 @@ WORKDIR /var/www/html
 # Define default command.
 EXPOSE 80
 ENTRYPOINT ["/tmp/docker_entrypoint.sh"]
-CMD ["apachectl", "-D", "FOREGROUND"]
+CMD ["/tmp/run_install_prestashop.sh", "&&", "apachectl", "-D", "FOREGROUND"]
