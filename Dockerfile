@@ -37,12 +37,12 @@ COPY ./phppsinfo.php /tmp/
 
 COPY ./php.ini /usr/local/etc/php/
 
-RUN chmod +x /tmp/wait-for-it.sh
-RUN chmod +x /tmp/run_install_prestashop.sh
+RUN chmod +x /tmp/wait-for-it.sh /tmp/run_install_prestashop.sh
 
 RUN a2enmod rewrite
 # Define working directory.
 WORKDIR /var/www/html
 # Define default command.
 EXPOSE 80
+ENTRYPOINT ["/tmp/docker-entrypoint.sh"]
 CMD ["apachectl", "-D", "FOREGROUND"]

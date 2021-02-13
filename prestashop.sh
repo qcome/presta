@@ -11,17 +11,16 @@ else
     # Si nouvelle app
     if [ ! -d sites/$app_name ]; then
 
+        # Si le l'archine n'est pas présente on la DL
         if [ ! -f archives/prestashop_$ps_version.zip ]; then
             mkdir -p archives
             curl -fsSL https://github.com/PrestaShop/PrestaShop/releases/download/$ps_version/prestashop_$ps_version.zip -o archives/prestashop_$ps_version.zip
         fi
 
-        mkdir -p archives $app_folder
-        #mkdir dock
-        # mkdir -p $app_folder/.docker/logs/mysql
-        ls -l
-        echo $app_folder
-        ls -l archives/
+        # Création rep site
+        mkdir -p $app_folder
+
+        # Unzip 
         unzip -n -q archives/prestashop_$ps_version.zip -d $app_folder
         rm -rf $app_folder/index.php
         rm -rf $app_folder/Install_PrestaShop.html
