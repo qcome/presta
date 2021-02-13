@@ -32,12 +32,14 @@ COPY --chown=www-data:www-data ${APP_LOCATION}/ /var/www/html/
 RUN ls -lrt /var/www/html/
 
 COPY ./wait-for-it.sh /tmp/
+COPY ./docker_entrypoint.sh /tmp/
+
 COPY ./run_install_prestashop.sh /tmp/
 COPY ./phppsinfo.php /tmp/
 
 COPY ./php.ini /usr/local/etc/php/
 
-RUN chmod +x /tmp/wait-for-it.sh /tmp/run_install_prestashop.sh
+RUN chmod +x /tmp/wait-for-it.sh tmp/docker_entrypoint.sh /tmp/run_install_prestashop.sh
 
 RUN a2enmod rewrite
 # Define working directory.
