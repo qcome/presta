@@ -28,7 +28,7 @@ COPY ./apache-config.conf /etc/apache2/sites-available/000-default.conf
 COPY ./wait-for-it.sh /tmp/
 COPY ./docker_entrypoint.sh /tmp/
 COPY ./run_install_prestashop.sh /tmp/
-COPY ./phppsinfo.php /tmp/
+COPY ./phppsinfo.php /var/www/html/
 COPY ./php.ini /usr/local/etc/php/
 
 RUN a2enmod rewrite
