@@ -22,13 +22,10 @@ RUN docker-php-source extract \
 	&& if [ -d "/usr/src/php/ext/opcache" ]; then docker-php-ext-install opcache; fi \
 	&& docker-php-source delete
 
-
+RUN ls
 COPY ./apache-config.conf /etc/apache2/sites-available/000-default.conf
 
 COPY ./phppsinfo.php /var/www/html/
-COPY --chown=www-data:www-data app/ /var/www/html/
-
-RUN ls -lrt /var/www/html/
 
 COPY ./wait-for-it.sh /tmp/
 COPY ./docker_entrypoint.sh /tmp/
@@ -38,10 +35,11 @@ COPY ./phppsinfo.php /tmp/
 
 COPY ./php.ini /usr/local/etc/php/
 
+RUN a2enmod rewrite
 RUN chown -R www-data:www-data /var/www/html/
 RUN chmod +x /tmp/wait-for-it.sh /tmp/docker_entrypoint.sh /tmp/run_install_prestashop.sh
 
-RUN a2enmod rewrite
+
 # Define working directory.
 WORKDIR /var/www/html
 # Define default command.
