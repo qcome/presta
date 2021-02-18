@@ -11,9 +11,7 @@ mv /var/www/html/install /var/www/html/installed \
 --language=${PS_LANGUAGE} \
 --country=${PS_COUNTRY} \
 --db_create=${PS_DB_CREATE} \
-&& rm -r /var/www/html/installed \
-&& ls -l /var/www/html \
-&& mv /var/www/html/admin /var/www/html/${PS_FOLDER_ADMIN} \
-&& mv /tmp/phppsinfo.php /var/www/html \
+&& mv /var/www/html/admin /var/www/html/${PS_FOLDER_ADMIN} \ #changement folder admin (required)
+&& mv /tmp/phppsinfo.php /var/www/html \ # vérifié
 && chown www-data:www-data -R /var/www/html \
 && apachectl -D FOREGROUND
