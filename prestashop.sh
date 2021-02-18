@@ -4,7 +4,8 @@ if [ -z "$1" ]; then
 else
     # Conf variables transmises au docker-compose
     app_name=$1
-    app_folder=sites/$app_name
+    root_folder=sites/$app_name
+    app_folder=$root_folder/app
     ps_version=1.7.7.1
     #apt install -y php unzip
 
@@ -20,18 +21,22 @@ else
         # Création rep site
         mkdir -p $app_folder
 
-        # Unzip 
+        # Unzip archive complète
         unzip -n -q archives/prestashop_$ps_version.zip -d $app_folder
         rm -rf $app_folder/index.php
         rm -rf $app_folder/Install_PrestaShop.html
-
+        # Unzip sous-archive
         unzip -n -q $app_folder/prestashop.zip -d $app_folder
         rm -rf $app_folder/prestashop.zip
 
         chown www-data:www-data -R $app_folder/
-        #cp -n -R -p $folder/prestashop/* /var/www/html
 
+        # Ajout du docker compose dans le dossier target
+        cp docker-compose.yml $root_folder
+        cp Dockerfile $root_folder
+        cp .env $root_folder
     fi
-    docker-compose down
-    APP_LOCATION=./sites/$app_name APP_NAME=$app_name docker-compose up --build
+
+    $root_folder/docker-compose down
+    APP_NAME=$app_name docker-compose up --build
 fi

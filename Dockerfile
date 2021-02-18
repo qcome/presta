@@ -24,10 +24,9 @@ RUN docker-php-source extract \
 
 
 COPY ./apache-config.conf /etc/apache2/sites-available/000-default.conf
-ARG APP_LOCATION
 
 COPY ./phppsinfo.php /var/www/html/
-COPY --chown=www-data:www-data ${APP_LOCATION}/ /var/www/html/
+COPY --chown=www-data:www-data app/ /var/www/html/
 
 RUN ls -lrt /var/www/html/
 

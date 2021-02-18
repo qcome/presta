@@ -9,8 +9,8 @@ services:
       - .env
     volumes:
       #- ./db_data/db/backup.sql:/docker-entrypoint-initdb.d/backup.sql #it loads an already existing database
-      - ./dock/data/mysql/:/var/lib/mysql
-      - ./dock/${APP_NAME}/logs/mysql/:/var/log/mysql
+      - ./data/mysql/:/var/lib/mysql
+      - ./logs/mysql/:/var/log/mysql
     ports:
       - 3306:3306
     entrypoint: "" # On écrase l'entrypoint de l'image mysql : ENTRYPOINT ["docker-entrypoint.sh"]
@@ -36,13 +36,10 @@ services:
 
   app_dev:
     container_name: presta_app
-    build:
-      context: .
-      args:
-        APP_LOCATION: ${APP_LOCATION}
+    build: .
     #command: ["/tmp/wait-for-it.sh", "--timeout=60", "--strict", "mysql:3306", "--", "/tmp/run_install_prestashop.sh"]
     volumes:
-      - ${APP_LOCATION}/:/var/www/html:rw
+      - app/:/var/www/html:rw
     ports:
       - 8000:80
     depends_on:
