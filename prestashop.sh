@@ -37,6 +37,6 @@ else
         cp .env $root_folder
     fi
 
-    $root_folder/docker-compose down
-    APP_NAME=$app_name docker-compose up --build
+    docker-compose -f $root_folder/docker-compose.yml down
+    APP_NAME=$app_name docker-compose -f $root_folder/docker-compose.yml up --build
 fi
