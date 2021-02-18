@@ -38,12 +38,13 @@ COPY ./phppsinfo.php /tmp/
 
 COPY ./php.ini /usr/local/etc/php/
 
+RUN chown -R www-data:www-data /var/www/html/
 RUN chmod +x /tmp/wait-for-it.sh /tmp/docker_entrypoint.sh /tmp/run_install_prestashop.sh
-RUN ls -lrt /tmp/
+
 RUN a2enmod rewrite
 # Define working directory.
 WORKDIR /var/www/html
 # Define default command.
 EXPOSE 80
-ENTRYPOINT ["/tmp/docker_entrypoint.sh"]
-CMD /tmp/run_install_prestashop.sh
+#ENTRYPOINT ["/tmp/docker_entrypoint.sh"]
+#CMD /tmp/run_install_prestashop.sh
