@@ -33,7 +33,7 @@ COPY ./php.ini /usr/local/etc/php/
 
 RUN a2enmod rewrite
 RUN chown -R www-data:www-data /var/www/html/
-#RUN chmod +x /tmp/wait-for-it.sh /tmp/docker_entrypoint.sh /tmp/run_install_prestashop.sh
+RUN chmod +x /tmp/wait-for-it.sh /tmp/docker_entrypoint.sh /tmp/run_install_prestashop.sh
 
 
 # Define working directory.
