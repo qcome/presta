@@ -22,9 +22,7 @@ RUN docker-php-source extract \
 	&& if [ -d "/usr/src/php/ext/opcache" ]; then docker-php-ext-install opcache; fi \
 	&& docker-php-source delete
 
-RUN ls -l
 COPY ./apache-config.conf /etc/apache2/sites-available/000-default.conf
-
 COPY ./wait-for-it.sh /tmp/
 COPY ./docker_entrypoint.sh /tmp/
 COPY ./run_install_prestashop.sh /tmp/
