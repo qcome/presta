@@ -32,11 +32,10 @@ else
         chown www-data:www-data -R $app_folder/
 
         # Ajout du docker compose dans le dossier target
-        cp docker/docker-compose.yml $root_folder
         cp docker/Dockerfile $root_folder
         cp .env $root_folder
     fi
 
-    docker-compose -f $root_folder/docker-compose.yml down
-    APP_NAME=$app_name docker-compose -f $root_folder/docker-compose.yml up --build
+    docker-compose down
+    APP_NAME=$app_name docker-compose up --build
 fi
