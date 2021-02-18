@@ -30,10 +30,6 @@ else
         rm -rf $app_folder/prestashop.zip
 
         chown www-data:www-data -R $app_folder/
-
-        # Ajout du docker compose dans le dossier target
-        cp docker/Dockerfile $root_folder
-        cp .env $root_folder
     fi
 
     docker-compose down
