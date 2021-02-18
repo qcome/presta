@@ -38,5 +38,5 @@ else
     fi
 
     docker-compose -f $root_folder/docker-compose.yml down
-    APP_NAME=test docker-compose -f $root_folder/docker-compose.yml up --build
+    APP_NAME=$app_name docker-compose -f $root_folder/docker-compose.yml up --build
 fi
