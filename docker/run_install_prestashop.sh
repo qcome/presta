@@ -1,5 +1,5 @@
 #!/bin/bash
-&& echo "Running prestashop install..." \
+echo "Running prestashop install..." \
 && runuser -g www-data -u www-data -- php -d memory_limit=-1 /var/www/html/installed/index_cli.php \
 --domain=${PS_DOMAIN} \
 --db_server=${MYSQL_SERVER} \
