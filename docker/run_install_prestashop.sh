@@ -15,5 +15,5 @@ mv /var/www/html/install /var/www/html/installed \
 && rm -r /var/www/html/installed \
 && mv /var/www/html/admin /var/www/html/${PS_FOLDER_ADMIN} \
 && mv /tmp/phppsinfo.php /var/www/html \
-&& echo "${PS_FOLDER_ADMIN}"  \
+&& echo "${APP_NAME}"  \
 && apachectl -D FOREGROUND
