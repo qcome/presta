@@ -30,7 +30,7 @@ else
         unzip -n -q $app_folder/prestashop.zip -d $app_folder
         rm -rf $app_folder/prestashop.zip
 
-        cp ./docker/.gitignore app_folder
+        cp ./docker/.gitignore $app_folder
 
         chown www-data:www-data -R $app_folder/
     fi
