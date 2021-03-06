@@ -1,4 +1,5 @@
 #!/bin/bash
+mv /var/www/html/install /var/www/html/installed
 echo "Running prestashop install..."
 runuser -g www-data -u www-data -- php -d memory_limit=-1 /var/www/html/install/index_cli.php \
     --domain=${PS_DOMAIN} \
@@ -11,9 +12,12 @@ runuser -g www-data -u www-data -- php -d memory_limit=-1 /var/www/html/install/
     --language=${PS_LANGUAGE} \
     --country=${PS_COUNTRY} \
     --db_create=${PS_DB_CREATE} \
-rm -rf $app_folder/install
+rm -r /var/www/html/installed \
 mv /var/www/html/admin /var/www/html/${PS_FOLDER_ADMIN}
 mv /tmp/phppsinfo.php /var/www/html
+git init
+git commit -am "init"
+git push --set-upstream git@gitlab.com:qcome-prestashop/$1.git master
 apachectl -D FOREGROUND
 #&& git init \
 #&& git commit -am "init" \

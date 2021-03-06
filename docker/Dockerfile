@@ -12,6 +12,8 @@ RUN apt-get update \
 		default-mysql-client \
 		wget \
 		unzip \
+		git \
+	&& ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install iconv intl pdo_mysql mbstring soap gd zip
@@ -19,8 +21,8 @@ RUN apt-get update \
 RUN docker-php-source extract \
   && if [ -d "/usr/src/php/ext/mysql" ]; then docker-php-ext-install mysqlnd; fi \
   && if [ -d "/usr/src/php/ext/mcrypt" ]; then docker-php-ext-install mcrypt; fi \
-	&& if [ -d "/usr/src/php/ext/opcache" ]; then docker-php-ext-install opcache; fi \
-	&& docker-php-source delete
+  && if [ -d "/usr/src/php/ext/opcache" ]; then docker-php-ext-install opcache; fi \
+  && docker-php-source delete
 
 COPY ./apache-config.conf /etc/apache2/sites-available/000-default.conf
 COPY ./wait-for-it.sh /tmp/

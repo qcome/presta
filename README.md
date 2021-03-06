@@ -25,6 +25,8 @@ pwd: admin
 
 ```
 
+Il faut git et ./ssh/id_rsa de set up
+
 # TODO
  
  > To get the latest internationalization data upgrade the ICU system package and the intl PHP extension.
