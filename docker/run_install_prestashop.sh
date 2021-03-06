@@ -1,6 +1,5 @@
 #!/bin/bash
 mv /var/www/html/install /var/www/html/installed \
-&& echo "$1"  \
 && echo "Running prestashop install..." \
 && runuser -g www-data -u www-data -- php -d memory_limit=-1 /var/www/html/installed/index_cli.php \
 --domain=${PS_DOMAIN} \
@@ -16,4 +15,6 @@ mv /var/www/html/install /var/www/html/installed \
 && rm -r /var/www/html/installed \
 && mv /var/www/html/admin /var/www/html/${PS_FOLDER_ADMIN} \
 && mv /tmp/phppsinfo.php /var/www/html \
-&& apachectl -D FOREGROUND
+#&& apachectl -D FOREGROUND
+#&& git init \
+#&& git commit -am "init" \
