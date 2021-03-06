@@ -13,6 +13,7 @@ RUN apt-get update \
 		wget \
 		unzip \
 		git \
+	&& mkdir /root/.ssh && chmod 0700 /root/.ssh \
 	&& ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
