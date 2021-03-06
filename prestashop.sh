@@ -12,7 +12,7 @@ else
     # Si nouvelle app
     if [ ! -d sites/$app_name ]; then
 
-        # Si le l'archine n'est pas présente on la DL
+        # Si l'archive n'est pas présente on la DL
         if [ ! -f archives/prestashop_$ps_version.zip ]; then
             mkdir -p archives
             curl -fsSL https://github.com/PrestaShop/PrestaShop/releases/download/$ps_version/prestashop_$ps_version.zip -o archives/prestashop_$ps_version.zip
@@ -23,11 +23,14 @@ else
 
         # Unzip archive complète
         unzip -n -q archives/prestashop_$ps_version.zip -d $app_folder
+        # Delete unecessary files
         rm -rf $app_folder/index.php
         rm -rf $app_folder/Install_PrestaShop.html
         # Unzip sous-archive
         unzip -n -q $app_folder/prestashop.zip -d $app_folder
         rm -rf $app_folder/prestashop.zip
+
+        cp ./docker/.gitignore app_folder
 
         chown www-data:www-data -R $app_folder/
     fi

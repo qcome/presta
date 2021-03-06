@@ -21,10 +21,10 @@ services:
       --log_error=/var/log/mysql/mysql_error.log 
       --general_log_file=/var/log/mysql/mysql.log --general_log=1 
       --slow_query_log_file=/var/log/mysql/mysql-slow.log --long_query_time=2 --slow_query_log=1"
-    #container_name: ${APP_NAME}_mysql
     #--log-queries-not-using-indexes
 
   phpmyadmin:
+    container_name: presta_${APP_NAME}_phpmyadmin
     image: phpmyadmin/phpmyadmin
     ports:
       - 8080:80
@@ -32,10 +32,9 @@ services:
       - .env
     environment:
       PMA_HOST: mysql
-    container_name: presta_phpmyadmin
 
   app_dev:
-    container_name: presta_app
+    container_name: presta_${APP_NAME}_app
     build: ./docker
     command: ["/tmp/wait-for-it.sh", "--timeout=60", "--strict", "mysql:3306", "--", "/tmp/run_install_prestashop.sh"]
     volumes:

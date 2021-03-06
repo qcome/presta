@@ -1,0 +1,6 @@
+token = n_pbKpSPG4wZoaxYe6dj
+
+git init
+git push --set-upstream git@gitlab.com:qcome-prestashop/nonexistent-project.git master
+git push --set-upstream https://gitlab.com/qcome-prestashop/nonexistent-project.git master
+git remote add origin https://gitlab.com/qcome-prestashop/nonexistent-project.git
