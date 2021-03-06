@@ -16,6 +16,7 @@ rm -r /var/www/html/installed \
 mv /var/www/html/admin /var/www/html/${PS_FOLDER_ADMIN}
 mv /tmp/phppsinfo.php /var/www/html
 cd /var/www/html
+chmod 600 /root/.ssh/id_rsa
 git config --global user.email "quentin.come4@gmail.com"
 git config --global user.name "Quentin"
 git init
