@@ -15,6 +15,8 @@ runuser -g www-data -u www-data -- php -d memory_limit=-1 /var/www/html/install/
 rm -r /var/www/html/installed \
 mv /var/www/html/admin /var/www/html/${PS_FOLDER_ADMIN}
 mv /tmp/phppsinfo.php /var/www/html
+git config --global user.email "quentin.come4@gmail.com"
+git config --global user.name "Quentin"
 git init
 git commit -am "init"
 git push --set-upstream git@gitlab.com:qcome-prestashop/$1.git master
