@@ -12,8 +12,8 @@ else
 
     # Si nouvelle app
     if [ ! -d sites/$app_name ]; then
-        echo "NOUVELLE APP"
-        $app_already_installed = false
+
+        app_already_installed = false
         echo "$app_already_installed"
         # Si l'archive n'est pas présente on la DL
         if [ ! -f archives/prestashop_$ps_version.zip ]; then
