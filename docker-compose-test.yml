@@ -25,7 +25,7 @@ services:
       - DB_PASSWD=password
       - DB_NAME=prestashop
       - PS_FOLDER_ADMIN=adminPS
-      - PS_DOMAIN=localhost:8080
+      - PS_DOMAIN=209.97.178.32:8080
       - PS_LANGUAGE=en
       - PS_COUNTRY=GB
       - PS_FOLDER_INSTALL=installed
