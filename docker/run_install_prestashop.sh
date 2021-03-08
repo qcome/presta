@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ "$1" = false ] ; then
+if [ $1 = false ] ; then
     mv /var/www/html/install /var/www/html/installed
     echo "Running prestashop install..."
     runuser -g www-data -u www-data -- php -d memory_limit=-1 /var/www/html/installed/index_cli.php \
