@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "$1"
 if [ $1 = false ] ; then
     mv /var/www/html/install /var/www/html/installed
     echo "Running prestashop install..."
