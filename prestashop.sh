@@ -7,10 +7,13 @@ else
     root_folder=sites/$app_name
     app_folder=$root_folder/app
     ps_version=1.7.7.1
+    app_already_installed=true
     #apt install -y php unzip
 
     # Si nouvelle app
     if [ ! -d sites/$app_name ]; then
+
+        $app_already_installed = false
 
         # Si l'archive n'est pas présente on la DL
         if [ ! -f archives/prestashop_$ps_version.zip ]; then
@@ -37,5 +40,5 @@ else
     fi
 
     docker-compose down
-    APP_NAME=$app_name docker-compose up --build
+    APP_NAME=$app_name INSTALLED=$app_already_installed docker-compose up --build
 fi
