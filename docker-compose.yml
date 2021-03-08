@@ -3,10 +3,12 @@ version: "3"
 services:
   mysql:
     image: mariadb:10.5.8
-    container_name: presta_${APP_NAME}_mysql
+    container_name: presta_mysql
     restart: unless-stopped
     env_file:
       - .env
+    environment:
+      MYSQL_DATABASE: prestashop_${APP_NAME}
     volumes:
       #- ./db_data/db/backup.sql:/docker-entrypoint-initdb.d/backup.sql #it loads an already existing database
       - ./data/mysql/:/var/lib/mysql
@@ -24,7 +26,7 @@ services:
     #--log-queries-not-using-indexes
 
   phpmyadmin:
-    container_name: presta_${APP_NAME}_phpmyadmin
+    container_name: presta_phpmyadmin
     image: phpmyadmin/phpmyadmin
     ports:
       - 8080:80
@@ -36,7 +38,7 @@ services:
   app_dev:
     container_name: presta_${APP_NAME}_app
     build: ./docker
-    image: presta_app:latest
+    image: qcome/presta:latest
     command: ["/tmp/wait-for-it.sh", "--timeout=60", "--strict", "mysql:3306", "--", "/tmp/run_install_prestashop.sh", "${RUN_INSTALL}"]
     volumes:
       - ./sites/${APP_NAME}/app/:/var/www/html
