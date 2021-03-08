@@ -3,6 +3,7 @@ version: "3"
 services:
   mysql:
     image: mariadb:10.5.8
+    container_name: presta_mysql
     restart: unless-stopped
     env_file:
       - .env
