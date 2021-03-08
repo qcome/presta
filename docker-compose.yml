@@ -37,7 +37,7 @@ services:
     container_name: presta_${APP_NAME}_app
     build: ./docker
     image: presta/${APP_NAME}_app:latest
-    command: ["/tmp/wait-for-it.sh", "--timeout=60", "--strict", "mysql:3306", "--", "/tmp/run_install_prestashop.sh", "${INSTALLED}"]
+    command: ["/tmp/wait-for-it.sh", "--timeout=60", "--strict", "mysql:3306", "--", "/tmp/run_install_prestashop.sh", "${RUN_INSTALL}"]
     volumes:
       - ./sites/${APP_NAME}/app/:/var/www/html
       #- ~/.ssh/id_rsa:/root/.ssh/id_rsa
