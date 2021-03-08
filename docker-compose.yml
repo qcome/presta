@@ -6,9 +6,7 @@ services:
     container_name: presta_mysql
     restart: unless-stopped
     env_file:
-      - .env
-    environment:
-      MYSQL_DATABASE: prestashop_${APP_NAME}
+      - .env    
     volumes:
       #- ./db_data/db/backup.sql:/docker-entrypoint-initdb.d/backup.sql #it loads an already existing database
       - ./data/mysql/:/var/lib/mysql
@@ -36,7 +34,7 @@ services:
       PMA_HOST: mysql
 
   app_dev:
-    container_name: presta_${APP_NAME}_app
+    container_name: presta_app_${APP_NAME}
     build: ./docker
     image: qcome/presta:latest
     command: ["/tmp/wait-for-it.sh", "--timeout=60", "--strict", "mysql:3306", "--", "/tmp/run_install_prestashop.sh", "${RUN_INSTALL}"]
