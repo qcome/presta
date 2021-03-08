@@ -44,6 +44,7 @@ services:
       - mysql
     environment:
       - DB_SERVER=${MYSQL_SERVER}
+      - DB_PREFIX=ps161_
       - PS_DEV_MODE=${PS_DEV_MODE}
       - PS_INSTALL_AUTO=${PS_INSTALL_AUTO}
       - DB_USER=${MYSQL_USER}
