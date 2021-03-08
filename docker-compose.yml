@@ -5,14 +5,12 @@ services:
     image: mariadb:10.5.8
     container_name: presta_mysql
     restart: unless-stopped
-    environment:
-      MYSQL_DATABASE: prestashop_${APP_NAME}
     env_file:
       - .env
     volumes:
       #- ./db_data/db/backup.sql:/docker-entrypoint-initdb.d/backup.sql #it loads an already existing database
-      - ./sites/${APP_NAME}/data/mysql/:/var/lib/mysql
-      - ./sites/${APP_NAME}/logs/mysql/:/var/log/mysql
+      - ./data/mysql/:/var/lib/mysql
+      - ./logs/mysql/:/var/log/mysql
     ports:
       - 3306:3306
     entrypoint: "" # On écrase l'entrypoint de l'image mysql : ENTRYPOINT ["docker-entrypoint.sh"]
