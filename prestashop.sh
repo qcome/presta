@@ -38,8 +38,6 @@ else
         chown www-data:www-data -R $app_folder/
     fi
 
-    echo "$app_already_installed"
-
     docker-compose down
     APP_NAME=$app_name RUN_INSTALL=$run_install docker-compose up --build
 fi
