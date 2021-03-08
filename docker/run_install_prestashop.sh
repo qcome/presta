@@ -11,7 +11,7 @@ if [ $1 = true ] ; then
         --password=${PS_ADMIN_PASSWORD} \
         --language=${PS_LANGUAGE} \
         --country=${PS_COUNTRY} \
-        --db_create=${PS_DB_CREATE} \
+        --db_create=${PS_DB_CREATE}
     rm -r /var/www/html/install
     mv /var/www/html/admin /var/www/html/${PS_FOLDER_ADMIN}
     mv /tmp/phppsinfo.php /var/www/html
