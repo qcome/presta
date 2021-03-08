@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  db:
+  mysql:
     image: mariadb:10.5.8
     container_name: presta_${APP_NAME}_mysql
     restart: unless-stopped
@@ -9,8 +9,8 @@ services:
       - .env
     volumes:
       #- ./db_data/db/backup.sql:/docker-entrypoint-initdb.d/backup.sql #it loads an already existing database
-      - ./dock/data/mysql/:/var/lib/mysql #rajouter nom app
-      - ./dock/logs/mysql/:/var/log/mysql #rajouter nom app
+      - ./data/mysql/:/var/lib/mysql
+      - ./logs/mysql/:/var/log/mysql
     ports:
       - 3306:3306
     entrypoint: "" # On écrase l'entrypoint de l'image mysql : ENTRYPOINT ["docker-entrypoint.sh"]
@@ -21,30 +21,39 @@ services:
       --log_error=/var/log/mysql/mysql_error.log 
       --general_log_file=/var/log/mysql/mysql.log --general_log=1 
       --slow_query_log_file=/var/log/mysql/mysql-slow.log --long_query_time=2 --slow_query_log=1"
-    #container_name: ${APP_NAME}_mysql
     #--log-queries-not-using-indexes
 
   phpmyadmin:
+    container_name: presta_${APP_NAME}_phpmyadmin
     image: phpmyadmin/phpmyadmin
     ports:
       - 8080:80
     env_file:
       - .env
     environment:
-      PMA_HOST: db
-    container_name: presta_phpmyadmin
+      PMA_HOST: mysql
 
   app_dev:
     image: prestashop/prestashop:1.7-fpm
     container_name: presta_app
     #command: ["/tmp/wait-for-it.sh", "--timeout=60", "--strict", "db:3306", "--", "/tmp/run_install_prestashop.sh"]
-    volumes:
-      - ${APP_LOCATION}/:/var/www/html
+    #volumes:
+      #- ./sites/${APP_NAME}/app/:/var/www/html
     ports:
       - 8000:80
     depends_on:
-      - db
-    env_file:
-      - .env
+      - mysql
+    environment:
+      - DB_SERVER=${MYSQL_SERVER}
+      - PS_DEV_MODE=${PS_DEV_MODE}
+      - PS_INSTALL_AUTO=${PS_INSTALL_AUTO}
+      - DB_USER=${MYSQL_USER}
+      - DB_PASSWD=${MYSQL_PASSWORD}
+      - DB_NAME=${MYSQL_DATABASE}
+      - PS_FOLDER_ADMIN=${PS_FOLDER_ADMIN}
+      - PS_DOMAIN=${PS_DOMAIN}
+      - PS_LANGUAGE=${PS_LANGUAGE}
+      - PS_COUNTRY=${PS_COUNTRY}
+      - PS_FOLDER_INSTALL=installed
     networks:
       - default
