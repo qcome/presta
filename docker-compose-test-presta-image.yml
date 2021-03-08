@@ -55,5 +55,3 @@ services:
       - PS_LANGUAGE=${PS_LANGUAGE}
       - PS_COUNTRY=${PS_COUNTRY}
       - PS_FOLDER_INSTALL=installed
-    networks:
-      - default
