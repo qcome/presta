@@ -35,7 +35,7 @@ else
         
         cp ./docker/.gitignore $app_folder
 
-        chown www-data:www-data -R $app_folder/
+        
     fi
 
     docker-compose down
