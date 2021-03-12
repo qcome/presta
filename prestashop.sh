@@ -38,6 +38,6 @@ else
         chown www-data:www-data -R $app_folder/
     fi
 
-    #docker-compose down
+    docker-compose down
     APP_NAME=$app_name RUN_INSTALL=$run_install docker-compose up --build
 fi
