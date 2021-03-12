@@ -1,6 +1,9 @@
 token = n_pbKpSPG4wZoaxYe6dj
 
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
 git init
-git push --set-upstream git@gitlab.com:qcome-prestashop/nonexistent-project.git master
-git push --set-upstream https://gitlab.com/qcome-prestashop/nonexistent-project.git master
-git remote add origin https://gitlab.com/qcome-prestashop/nonexistent-project.git
+git add .
+git commit -m "init"
+git push --set-upstream git@gitlab.com:qcome-prestashop/test.git master
+git remote add origin https://gitlab.com/qcome-prestashop/test.git
