@@ -24,6 +24,6 @@ fi
 # git add .
 # git commit -m "init"
 # git push --set-upstream git@gitlab.com:qcome-prestashop/$1.git master
-apachectl -D FOREGROUND
+php-fpm
 #&& git init \
 #&& git commit -am "init" \
