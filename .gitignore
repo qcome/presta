@@ -2,7 +2,7 @@
 .vs
 
 #archives
-archives
+/archives
 
-sites
-tmp
+/sites
+/tmp

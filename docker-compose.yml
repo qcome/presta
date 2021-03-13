@@ -46,7 +46,7 @@ services:
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d
     restart: always
 
-  app:
+  php-fpm:
     container_name: presta_${APP_NAME}_app
     build: ./docker
     image: presta/${APP_NAME}_app:latest
