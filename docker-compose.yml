@@ -32,8 +32,21 @@ services:
       - .env
     environment:
       PMA_HOST: mysql
+  
+  nginx:
+    image: nginx
+    ports:
+      - "8000:80"
+      - "443"
+    depends_on:
+      - app
+    volumes:
+      - ./sites/${APP_NAME}/app/:/var/www/html/
+      - ./logs/nginx/:/var/log/nginx
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d
+    restart: always
 
-  app_dev:
+  app:
     container_name: presta_${APP_NAME}_app
     build: ./docker
     image: presta/${APP_NAME}_app:latest
@@ -41,8 +54,8 @@ services:
     volumes:
       - ./sites/${APP_NAME}/app/:/var/www/html
       #- ~/.ssh/id_rsa:/root/.ssh/id_rsa
-    ports:
-      - 8000:80
+    expose:
+      - 9000
     depends_on:
       - mysql
     env_file:
