@@ -30,7 +30,8 @@ COPY ./phppsinfo.php /tmp/
 COPY ./php.ini /usr/local/etc/php/
 
 RUN if [ -x "$(command -v apache2-foreground)" ]; then a2enmod rewrite; fi
-COPY --chown=www-data:www-data ${APP_LOCATION}/ /var/www/html/
+#COPY --chown=www-data:www-data ${APP_LOCATION}/ /var/www/html/
+COPY --chown=www-data:www-data / /var/www/html/
 
 RUN chmod +x /tmp/wait-for-it.sh /tmp/docker_entrypoint.sh /tmp/run_install_prestashop.sh
 
