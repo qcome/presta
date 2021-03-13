@@ -7,3 +7,4 @@ RUN chmod +x /tmp/wait-for-it.sh ./docker_entrypoint.sh
 
 ENTRYPOINT ["./docker-entrypoint.sh"]
 
+ CMD ["nginx" "-g" "daemon off;"]

@@ -40,4 +40,4 @@ WORKDIR /var/www/html
 # Define default command.
 EXPOSE 80
 
-#CMD ["/tmp/run_install_prestashop.sh"]
+CMD ["/tmp/run_install_prestashop.sh"]
