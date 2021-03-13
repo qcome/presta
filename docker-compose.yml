@@ -34,7 +34,7 @@ services:
       PMA_HOST: mysql
   
   nginx:
-    image: nginx
+    build: ./docker/nginx
     ports:
       - "8000:80"
       - "443"
