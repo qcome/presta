@@ -40,7 +40,6 @@ services:
       - "443"
     depends_on:
       - app
-    command: ["/tmp/wait-for-it.sh", "--timeout=60", "--strict", "app:9000"]
     volumes:
       - ./sites/${APP_NAME}/app/:/var/www/html/
       - ./logs/nginx/:/var/log/nginx
