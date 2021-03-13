@@ -34,7 +34,7 @@ COPY --chown=www-data:www-data ${APP_LOCATION}/ /var/www/html/
 
 RUN chmod +x /tmp/wait-for-it.sh /tmp/docker_entrypoint.sh /tmp/run_install_prestashop.sh
 RUN echo "DOCKERFILE FPM"
-RUN echo ${APP_LOCATION}
+RUN echo $APP_LOCATION
 
 ENTRYPOINT ["/tmp/docker_entrypoint.sh"]
 # Define working directory.
