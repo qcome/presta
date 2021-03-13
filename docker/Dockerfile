@@ -28,8 +28,7 @@ COPY ./docker_entrypoint.sh /tmp/
 COPY ./run_install_prestashop.sh /tmp/
 COPY ./phppsinfo.php /tmp/
 COPY ./php.ini /usr/local/etc/php/
-RUN echo "INSIDE DOCKERFILE"
-RUN echo "${APP_LOCATION}"
+
 RUN if [ -x "$(command -v apache2-foreground)" ]; then a2enmod rewrite; fi
 #COPY --chown=www-data:www-data ${APP_LOCATION}/ /var/www/html/
 COPY --chown=www-data:www-data ${APP_LOCATION}/ /var/www/html/

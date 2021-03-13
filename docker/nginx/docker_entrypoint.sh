@@ -2,7 +2,7 @@
 
 # Abort on any error (including if wait-for-it fails).
 set -e
-echo "TESTTTT"
+echo "INSIDE DOCKER_ENTRYPOINT NGINX"
 echo "$@"
 
 # Wait for the nginx app to be up, if we know where it is.
