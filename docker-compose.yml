@@ -50,7 +50,7 @@ services:
   #   restart: always
   nginx:
     container_name: presta_nginx
-    image: nginx
+    build: ./docker/nginx
     ports:
       - "8000:80"
       - "443"
