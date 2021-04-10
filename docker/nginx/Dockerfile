@@ -10,4 +10,4 @@ RUN ls -l
 
 ENTRYPOINT ["./docker-entrypoint.sh"]
 
-CMD nginx -g 'daemon off;'
+CMD nginx
