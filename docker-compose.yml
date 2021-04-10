@@ -34,6 +34,7 @@ services:
       PMA_HOST: mysql
   
   nginx:
+    container_name: presta_nginx
     build: ./docker/nginx
     ports:
       - "8000:80"
