@@ -11,4 +11,3 @@ RUN ls -l
 ENTRYPOINT ["./docker-entrypoint.sh"]
 
 CMD nginx
-
