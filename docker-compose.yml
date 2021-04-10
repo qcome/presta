@@ -33,28 +33,30 @@ services:
     environment:
       PMA_HOST: mysql
   
-  # nginx:
-  #   container_name: presta_nginx
-  #   build: ./docker/nginx
-  #   ports:
-  #     - "8000:80"
-  #     - "443"
-  #   depends_on:
-  #     - php-fpm
-  #   volumes:
-  #     - ./sites/${APP_NAME}/app/:/var/www/html/
-  #     - ./logs/nginx/:/var/log/nginx
-  #     - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
-  #     - ./docker/nginx/sites/:/etc/nginx/sites-available
-  #     - ./docker/nginx/conf.d/:/etc/nginx/conf.d #OK
-  #   restart: always
   nginx:
     container_name: presta_nginx
     build: ./docker/nginx
     ports:
       - "8000:80"
       - "443"
+    depends_on:
+      - php-fpm
+    volumes:
+      - ./sites/${APP_NAME}/app/:/var/www/html/
+      - ./logs/nginx/:/var/log/nginx
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/sites/:/etc/nginx/sites-available
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d #OK
     restart: always
+    env_file:
+      - .env
+  # nginx:
+  #   container_name: presta_nginx
+  #   build: ./docker/nginx
+  #   ports:
+  #     - "8000:80"
+  #     - "443"
+  #   restart: always
 
   php-fpm:
     container_name: presta_${APP_NAME}_app
