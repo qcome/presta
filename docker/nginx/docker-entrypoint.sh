@@ -2,10 +2,6 @@
 
 # Abort on any error (including if wait-for-it fails).
 set -e
-echo "=============================================================================INSIDE DOCKER_ENTRYPOINT NGINX"
-echo "$APP_HOST"
-echo "$APP_PORT"
-echo "$@"
 
 # Wait for the nginx app to be up, if we know where it is.
 if [ -n "$APP_HOST" ]; then

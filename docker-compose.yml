@@ -61,7 +61,7 @@ services:
   php-fpm:
     container_name: presta_${APP_NAME}_app
     build: 
-      context: ./docker
+      context: ./docker/php-fpm
       dockerfile: Dockerfile
       args:
         APP_NAME: ${APP_NAME}
