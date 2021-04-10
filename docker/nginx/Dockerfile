@@ -1,4 +1,4 @@
-FROM nginx:apline
+FROM nginx:latest
 
 COPY ./wait-for-it.sh /tmp/
 COPY ./docker_entrypoint.sh ./
