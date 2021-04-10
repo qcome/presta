@@ -44,7 +44,7 @@ services:
     volumes:
       - ./sites/${APP_NAME}/app/:/var/www/html/
       - ./logs/nginx/:/var/log/nginx
-      - ./docker/nginx/conf.d/:/etc/nginx/conf.d
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d #OK
     restart: always
 
   php-fpm:

@@ -1,4 +1,4 @@
-FROM nginx:latest
+FROM nginx:alpine
 
 COPY ./wait-for-it.sh /tmp/
 COPY ./docker_entrypoint.sh ./
