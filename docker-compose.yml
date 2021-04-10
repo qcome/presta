@@ -44,6 +44,8 @@ services:
     volumes:
       - ./sites/${APP_NAME}/app/:/var/www/html/
       - ./logs/nginx/:/var/log/nginx
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/sites/:/etc/nginx/sites-available
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d #OK
     restart: always
 
