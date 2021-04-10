@@ -51,12 +51,6 @@ services:
     ports:
         - "8000:80"
         - "443"
-    depends_on:
-        - php-fpm
-    volumes:
-        - ./sites/${APP_NAME}/app/:/var/www/html/
-        - ./logs/nginx/:/var/log/nginx
-        - ./docker/nginx/conf.d/:/etc/nginx/conf.d
     restart: always
 
   php-fpm:
