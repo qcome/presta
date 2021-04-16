@@ -1,6 +1,5 @@
 #!/bin/bash
 echo "Inside 'run_install_prestashop.sh'..."
-echo $1
 if [ -z "$1" ]; then
     echo "Boolean parameter for install missing"; 
 else
