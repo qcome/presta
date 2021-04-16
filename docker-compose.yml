@@ -2,7 +2,7 @@ version: "3"
 
 services:
   db:
-    image: mariadb:10.5.8 #mariadb > mysql
+    build: ./docker/database
     restart: unless-stopped # restart le container si stoppé lors d'une erreur
     env_file:
       - .env
@@ -10,8 +10,6 @@ services:
       #- ./db_data/db/backup.sql:/docker-entrypoint-initdb.d/backup.sql #it loads an already existing database
       - ./sites/${APP_NAME}/data/mysql/:/var/lib/mysql # mapping de la db
       - ./sites/${APP_NAME}/logs/mysql/:/var/log/mysql # mapping des logs de la db
-    ports:
-      - 3306:3306
     entrypoint: "" # On écrase l'entrypoint de l'image mysql : ENTRYPOINT ["docker-entrypoint.sh"]
     command: >
       bash -c "chown -R mysql:mysql /var/log/mysql 

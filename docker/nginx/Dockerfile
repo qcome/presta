@@ -10,4 +10,6 @@ RUN ls -l
 
 ENTRYPOINT ["./docker-entrypoint.sh"]
 
-CMD nginx
+CMD ["nginx"]
+
+EXPOSE 80 443
