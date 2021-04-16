@@ -30,7 +30,7 @@ services:
     env_file:
       - .env
     environment:
-      PMA_HOST: mysql
+      PMA_HOST: db
   
   nginx:
     container_name: presta_nginx
@@ -73,6 +73,6 @@ services:
     expose:
       - 9000
     depends_on:
-      - mysql
+      - db
     env_file:
       - .env
