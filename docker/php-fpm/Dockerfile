@@ -41,7 +41,7 @@ RUN echo "BONSOIR"
 ARG RUN_INSTALL
 RUN echo $RUN_INSTALL
 
-CMD ["sh", "-c", "/tmp/run_install_prestashop.sh false"]
+CMD ["sh", "-c", "/tmp/run_install_prestashop.sh ${RUN_INSTALL}"]
 
 # Define working directory.
 WORKDIR /var/www/html
