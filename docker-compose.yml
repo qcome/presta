@@ -2,14 +2,14 @@ version: "3"
 
 services:
   db:
-    image: mariadb:10.5.8
-    restart: unless-stopped
+    image: mariadb:10.5.8 #mariadb > mysql
+    restart: unless-stopped # restart le container si stoppé lors d'une erreur
     env_file:
       - .env
     volumes:
       #- ./db_data/db/backup.sql:/docker-entrypoint-initdb.d/backup.sql #it loads an already existing database
-      - ./sites/${APP_NAME}/data/mysql/:/var/lib/mysql
-      - ./sites/${APP_NAME}/logs/mysql/:/var/log/mysql
+      - ./sites/${APP_NAME}/data/mysql/:/var/lib/mysql # mapping de la db
+      - ./sites/${APP_NAME}/logs/mysql/:/var/log/mysql # mapping des logs de la db
     ports:
       - 3306:3306
     entrypoint: "" # On écrase l'entrypoint de l'image mysql : ENTRYPOINT ["docker-entrypoint.sh"]
@@ -23,7 +23,6 @@ services:
     #--log-queries-not-using-indexes
 
   phpmyadmin:
-    container_name: presta_phpmyadmin
     image: phpmyadmin/phpmyadmin
     ports:
       - 8080:80
@@ -33,7 +32,6 @@ services:
       PMA_HOST: db
   
   nginx:
-    container_name: presta_nginx
     build: ./docker/nginx
     ports:
       - "8000:80"
@@ -49,13 +47,6 @@ services:
     restart: always
     env_file:
       - .env
-  # nginx:
-  #   container_name: presta_nginx
-  #   build: ./docker/nginx
-  #   ports:
-  #     - "8000:80"
-  #     - "443"
-  #   restart: always
 
   php-fpm:
     container_name: presta_${APP_NAME}_app
