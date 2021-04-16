@@ -39,5 +39,7 @@ else
     fi
 
     docker-compose down
+    echo 'test'
+    echo $run_install
     APP_NAME=$app_name RUN_INSTALL=$run_install docker-compose up --build
 fi
