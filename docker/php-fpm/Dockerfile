@@ -34,7 +34,6 @@ RUN if [ -x "$(command -v apache2-foreground)" ]; then a2enmod rewrite; fi
 RUN echo "BONSOIR"
 RUN echo ${APP_LOCATION}
 RUN echo ${RUN_INSTALL}
-COPY --chown=www-data:www-data ${APP_LOCATION}/ /var/www/html/
 
 RUN chmod +x /tmp/wait-for-it.sh /tmp/docker_entrypoint.sh /tmp/run_install_prestashop.sh
 
