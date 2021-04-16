@@ -39,6 +39,7 @@ RUN chmod +x /tmp/wait-for-it.sh /tmp/docker_entrypoint.sh /tmp/run_install_pres
 ENTRYPOINT ["/tmp/docker_entrypoint.sh"]
 RUN echo "BONSOIR"
 ARG RUN_INSTALL
+ENV RUN_INSTALL ${RUN_INSTALL}
 RUN echo $RUN_INSTALL
 
 CMD ["sh", "-c", "/tmp/run_install_prestashop.sh ${RUN_INSTALL}"]
