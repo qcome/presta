@@ -10,7 +10,7 @@ else
     run_install=false
     #apt install -y php unzip
 
-    # Si nouvelle app
+    # Si nouvelle app on extrait l'archive dans le rep et on delete les fichiers inutiles, hop hop hop
     if [ ! -d sites/$app_name ]; then
         run_install=true
 
