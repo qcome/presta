@@ -3,6 +3,7 @@ version: "3"
 services:
   db:
     build: ./database
+    container_name: mariadb
     restart: unless-stopped # restart le container si stoppé lors d'une erreur
     env_file:
       - .env
@@ -18,10 +19,11 @@ services:
       --log_error=/var/log/mysql/mysql_error.log 
       --general_log_file=/var/log/mysql/mysql.log --general_log=1 
       --slow_query_log_file=/var/log/mysql/mysql-slow.log --long_query_time=2 --slow_query_log=1"
-    #--log-queries-not-using-indexes
+      --log-queries-not-using-indexes
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
     ports:
       - 8080:80
     env_file:
@@ -31,6 +33,7 @@ services:
   
   nginx:
     build: ./nginx
+    container_name: nginx
     ports:
       - "8000:80"
       - "443"
