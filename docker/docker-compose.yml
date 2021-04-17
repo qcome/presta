@@ -3,7 +3,6 @@ version: "3"
 services:
   db:
     build: ./database
-    container_name: mariadb
     restart: unless-stopped # restart le container si stoppé lors d'une erreur
     env_file:
       - .env
@@ -23,7 +22,6 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
     ports:
       - 8080:80
     env_file:
@@ -33,7 +31,6 @@ services:
   
   nginx:
     build: ./nginx
-    container_name: nginx
     ports:
       - "8000:80"
       - "443"
@@ -50,7 +47,6 @@ services:
       - .env
 
   php-fpm:
-    container_name: presta_${APP_NAME}_app
     build: 
       context: ./php-fpm
       dockerfile: Dockerfile
