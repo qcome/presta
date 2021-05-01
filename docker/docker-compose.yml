@@ -1,4 +1,4 @@
-version: "3"
+version: "3.5"
 
 services:
   db:
@@ -19,6 +19,8 @@ services:
       --general_log_file=/var/log/mysql/mysql.log --general_log=1 
       --slow_query_log_file=/var/log/mysql/mysql-slow.log --long_query_time=2 --slow_query_log=1"
       --log-queries-not-using-indexes
+    networks: 
+      - backend
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -28,6 +30,8 @@ services:
       - .env
     environment:
       PMA_HOST: db
+    networks: 
+      - backend
   
   nginx:
     build: ./nginx
@@ -45,6 +49,8 @@ services:
     restart: always
     env_file:
       - .env
+    networks: 
+      - frontend
 
   php-fpm:
     build: 
@@ -64,3 +70,11 @@ services:
       - db
     env_file:
       - .env
+    networks: 
+      - frontend
+      - backend
+
+  networks: 
+    frontend:
+    backend:
+
