@@ -57,7 +57,6 @@ services:
       context: ./php-fpm
       dockerfile: Dockerfile
       args:
-        APP_NAME: ${APP_NAME}
         RUN_INSTALL: ${RUN_INSTALL}
     image: presta/${APP_NAME}_app:latest
     #command: ["/tmp/wait-for-it.sh", "--timeout=60", "--strict", "mysql:3306", "--", "/tmp/run_install_prestashop.sh", "${RUN_INSTALL}", "${APP_NAME}"]
