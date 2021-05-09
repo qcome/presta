@@ -70,8 +70,6 @@ services:
       - db
     env_file:
       - .env
-    command: >
-      sh -c "/tmp/run_install_prestashop.sh ${RUN_INSTALL}"
     networks: 
       - frontend
       - backend

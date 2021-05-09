@@ -39,6 +39,8 @@ ENTRYPOINT ["/tmp/docker_entrypoint.sh"]
 ARG RUN_INSTALL
 ENV RUN_INSTALL ${RUN_INSTALL}
 
+CMD ["php-fpm"]
+
 # Define working directory.
 WORKDIR /var/www/html
 # Define default command.
