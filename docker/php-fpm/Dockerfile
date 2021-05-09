@@ -39,8 +39,6 @@ ENTRYPOINT ["/tmp/docker_entrypoint.sh"]
 ARG RUN_INSTALL
 ENV RUN_INSTALL ${RUN_INSTALL}
 
-CMD ["sh", "-c", "/tmp/run_install_prestashop.sh ${RUN_INSTALL}"]
-
 # Define working directory.
 WORKDIR /var/www/html
 # Define default command.
