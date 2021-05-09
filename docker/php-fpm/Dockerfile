@@ -36,7 +36,7 @@ RUN chmod +x /tmp/wait-for-it.sh /tmp/docker_entrypoint.sh /tmp/run_install_pres
 
 ENTRYPOINT ["/tmp/docker_entrypoint.sh", "/tmp/run_install_prestashop.sh"]
 
-CMD ["php-fpm"]
+CMD []
 
 # Define working directory.
 WORKDIR /var/www/html
