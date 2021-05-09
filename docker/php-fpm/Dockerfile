@@ -34,12 +34,9 @@ RUN if [ -x "$(command -v apache2-foreground)" ]; then a2enmod rewrite; fi
 
 RUN chmod +x /tmp/wait-for-it.sh /tmp/docker_entrypoint.sh /tmp/run_install_prestashop.sh
 
-ENTRYPOINT ["/tmp/docker_entrypoint.sh"]
+ENTRYPOINT ["/tmp/docker_entrypoint.sh", "/tmp/run_install_prestashop.sh"]
 
-ARG RUN_INSTALL
-ENV RUN_INSTALL ${RUN_INSTALL}
-
-CMD ["sh", "-c", "/tmp/run_install_prestashop.sh ${RUN_INSTALL}"]
+CMD ["php-fpm"]
 
 # Define working directory.
 WORKDIR /var/www/html

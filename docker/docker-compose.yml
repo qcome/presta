@@ -53,14 +53,9 @@ services:
       - frontend
 
   php-fpm:
-    build: 
-      context: ./php-fpm
-      dockerfile: Dockerfile
-      args:
-        APP_NAME: ${APP_NAME}
-        RUN_INSTALL: ${RUN_INSTALL}
+    build: ./php-fpm
     image: presta/${APP_NAME}_app:latest
-    #command: ["/tmp/wait-for-it.sh", "--timeout=60", "--strict", "mysql:3306", "--", "/tmp/run_install_prestashop.sh", "${RUN_INSTALL}", "${APP_NAME}"]
+    command: ["${RUN_INSTALL}"]
     volumes:
       - ../sites/${APP_NAME}/app/:/var/www/html
       #- ~/.ssh/id_rsa:/root/.ssh/id_rsa
@@ -70,7 +65,7 @@ services:
       - db
     env_file:
       - .env
-    # command: >
+    # command: [""]
     #   sh -c "/tmp/run_install_prestashop.sh ${RUN_INSTALL}"
     networks: 
       - frontend
