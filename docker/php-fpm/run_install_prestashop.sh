@@ -5,8 +5,8 @@ if [ -z "$1" ]; then
 else
     if [ $1 = true ] ; then
         echo "Running prestashop install..."
-        chown www-data:www-data -R /var/www/html/
-        runuser -g www-data -u www-data -- php -d memory_limit=-1 /var/www/html/install/index_cli.php \
+        #chown www-data:www-data -R /var/www/html/
+        runuser -g root -u root -- php -d memory_limit=-1 /var/www/html/install/index_cli.php \
             --domain=${PS_DOMAIN} \
             --db_server=${MYSQL_SERVER} \
             --db_name=${MYSQL_DATABASE} \
@@ -39,6 +39,6 @@ fi
 # git add .
 # git commit -m "init"
 # git push --set-upstream git@gitlab.com:qcome-prestashop/$1.git master
-php-fpm
+php-fpm --allow-to-run-as-root
 #&& git init \
 #&& git commit -am "init" \

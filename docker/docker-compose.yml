@@ -65,6 +65,8 @@ services:
       - db
     env_file:
       - .env
+    group_add:
+      - www-data
     # command: [""]
     #   sh -c "/tmp/run_install_prestashop.sh ${RUN_INSTALL}"
     networks: 
