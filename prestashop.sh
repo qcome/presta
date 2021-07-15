@@ -35,7 +35,7 @@ else
         
         cp ./docker/php-fpm/.gitignore $app_folder
 
-        chown www-data:www-data -R $app_folder/
+        #chown www-data:www-data -R $app_folder/
     fi
 
     APP_NAME=$app_name RUN_INSTALL=$run_install docker-compose -f ./docker/docker-compose.yml --project-name presta-$app_name down
