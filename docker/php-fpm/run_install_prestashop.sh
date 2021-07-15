@@ -5,7 +5,6 @@ if [ -z "$1" ]; then
 else
     if [ $1 = true ] ; then
         echo "Running prestashop install..."
-        chown www-data:www-data -R /var/www/html/
         runuser -g www-data -u www-data -- php -d memory_limit=-1 /var/www/html/install/index_cli.php \
             --domain=${PS_DOMAIN} \
             --db_server=${MYSQL_SERVER} \
