@@ -58,7 +58,7 @@ services:
     command: ["${RUN_INSTALL}"]
     volumes:
       - ../sites/${APP_NAME}/app/:/var/www/html
-      #- ~/.ssh/id_rsa:/root/.ssh/id_rsa
+      - ~/.ssh/id_rsa:/root/.ssh/id_rsa
     expose:
       - 9000
     depends_on:
