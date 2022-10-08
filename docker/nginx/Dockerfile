@@ -1,4 +1,4 @@
-FROM nginx:latest
+FROM nginx:1.20
 
 COPY ./wait-for-it.sh /tmp/
 COPY ./docker-entrypoint.sh ./
